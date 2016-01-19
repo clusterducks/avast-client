@@ -1,7 +1,7 @@
 # avast-client
 ...ya-harr!
 
-![Avast](https://media.giphy.com/media/YlO7WuOUZvNok/giphy.gif)
+![Avast](https://media.giphy.com/media/19ArLKSnYJ344/giphy.gif)
 
 ### Dependencies
 
