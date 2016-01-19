@@ -1,0 +1,24 @@
+# logs
+logs
+*.log
+
+# node files
+/node_modules
+/bower_components
+
+# typing
+/typings
+/tsd_typings
+
+# dist
+/dist
+.webpack.json
+
+# docs
+/doc
+
+# coverage
+/coverage
+
+# OS
+.DS_Store
