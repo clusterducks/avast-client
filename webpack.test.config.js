@@ -25,7 +25,7 @@ module.exports = {
                 loader: 'ts-loader',
                 query: {
                     // remove TypeScript helpers to be injected below by DefinePlugin
-                    compilerOptions': {
+                    compilerOptions: {
                         removeComments: true,
                         noEmitHelpers: true,
                     },
