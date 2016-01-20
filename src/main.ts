@@ -7,34 +7,17 @@ const thunkMiddleware = require('redux-thunk');
 import {AppStore} from 'angular2-redux';
 import 'rxjs/add/operator/map';
 
-var ReconnectingWebSocket = require('ReconnectingWebSocket');
-var socket = new ReconnectingWebSocket(
-  `${window.location.origin.replace('http', 'ws')}/ws`, null, { debug: true }
-);
-
-socket.onopen = function() {
-  console.log('on open');
-};
-
-socket.onmessage = function(e) {
-  console.log('on message');
-  console.log(e);
-};
-
-socket.onclose = function() {
-  console.log('on close');
-};
-
 import {AppComponent} from './app/components/app.component';
+import {NodesService} from './app/components/nodes/providers/nodes.service';
 import {ConsulActions} from './app/actions/consul.actions';
 import {DockerActions} from './app/actions/docker.actions';
 import consul from './app/reducers/consul.reducer';
 import docker from './app/reducers/docker.reducer';
 
 const loggerMiddleware = store => next => action => {
-    console.log('dispatching', action);
+    //console.log('dispatching', action);
     let result = next(action);
-    console.log('next state', store.getState());
+    //console.log('next state', store.getState());
     return result;
 };
 
@@ -44,13 +27,14 @@ let createStoreWithMiddleware = applyMiddleware(
 )(createStore);
 
 const initState = {
-  consul: {
-    //datacenters: ['dc1']
-  },
-  docker: {
-    //containers: [],
-    //images: []
-  }
+  //consul: {
+  //  datacenters: ['dc1'],
+  //  nodes: []
+  //},
+  //docker: {
+  //  containers: [],
+  //  images: []
+  //}
 };
 
 const appStore = new AppStore(
@@ -66,6 +50,7 @@ document.addEventListener('DOMContentLoaded', function main() {
     ...HTTP_PROVIDERS,
     ...ROUTER_PROVIDERS,
     provide(AppStore, {useValue: appStore}),
+    NodesService,
     ConsulActions,
     DockerActions
   ])
