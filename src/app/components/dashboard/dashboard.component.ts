@@ -4,6 +4,7 @@ import {AppStore} from 'angular2-redux';
 
 import {ConsulActions} from '../../actions/consul.actions';
 import {SwarmNode} from '../nodes/interfaces/swarm-node';
+import {NodesService} from '../nodes/providers/nodes.service';
 
 @Component({
   selector: 'avast-dashboard',
@@ -23,7 +24,8 @@ export class DashboardComponent implements OnInit {
 
   constructor (private _router: Router,
                private _appStore: AppStore,
-               private _consulActions: ConsulActions) {
+               private _consulActions: ConsulActions,
+               private _nodesService: NodesService) {
   }
 
   ngOnInit() {
