@@ -1,5 +1,5 @@
 <header class="drawer-header">
-  <div class="dc-dropdown">
+  <div *ngIf="datacenters?.length" class="dc-dropdown">
     <span>dc1</span>
     <div class="mdl-layout-spacer"></div>
     <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
@@ -7,37 +7,21 @@
       <span class="visuallyhidden">Datacenters</span>
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
-      <li class="mdl-menu__item">dc1</li>
-      <li class="mdl-menu__item">dc2</li>
+      <li *ngFor="#dc of datacenters" class="mdl-menu__item" (click)="selectDatacenter(dc)">{{dc}}</li>
     </ul>
   </div>
 </header>
 <nav class="mdl-navigation">
-  <a class="mdl-navigation__link" href="">
-    <span>rpi1</span>
-    <small>1.1.1.1:1234</small>
-    <span class="led"></span>
-  </a>
-  <a class="mdl-navigation__link" href="">
-    <span>rpi2</span>
-    <small>1.1.1.1:1234</small>
-    <span class="led"></span>
-  </a>
-  <a class="mdl-navigation__link" href="">
-    <span>rpi3</span>
-    <small>1.1.1.1:1234</small>
-    <span class="led"></span>
-  </a>
-  <a class="mdl-navigation__link" href="">
-    <span>rpi4</span>
-    <small>1.1.1.1:1234</small>
-    <span class="led"></span>
-  </a>
-  <a class="mdl-navigation__link" href="">
-    <span>rpi5</span>
-    <small>1.1.1.1:1234</small>
-    <span class="led"></span>
-  </a>
+  <div *ngIf="isFetchingNodes" class="fetching">Loading nodes...</div>
+  <div *ngIf="nodes?.length">
+    <div *ngFor="#dcn of nodes" class="mdl-navigation__link" (click)="gotoNode(dcn.name)">
+      <div class="module">
+        <span class="led"></span>
+        <div>{{dcn.name}}</div>
+        <small>{{dcn.address}}</small>
+      </div>
+    </div>
+  </div>
   <div class="mdl-layout-spacer"></div>
   <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
 </nav>

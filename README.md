@@ -21,11 +21,6 @@ npm i --global webpack \
 ```
 npm i
 # `typings install` will be run in the postinstall hook
-
-### IMPORTANT ###
-# temporary webpack-dev-server fix (until next release)
-npm i http://github.com/webpack/webpack-dev-server/tarball/master
-cd node_modules/webpack-dev-server; npm i && npm run prepublish
 ```
 
 ### Running
