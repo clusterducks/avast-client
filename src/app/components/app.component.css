@@ -1,33 +1,98 @@
+html, body {
+  font-family: "Roboto", Helvetica, sans-serif;
+}
+
+/*
+sidebar:        #2d333c
+bg:             #343d47 - #404852
+
+neon blue:      #00b9e6
+neon purple:    #9644ff
+neon green:     #00df93
+
+seafoam green:  #2ef2dc
+light cyan:     #2bd9f8
+
+green:          #33c87e
+red:            #f94964
+
 a {
-  padding: 5px 10px;
-  text-decoration: none;
-  margin-top: 10px;
-  display: inline-block;
-  background-color: #eee;
-  border-radius: 4px;
+  width: 64px;
+  height: 64px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+
+  background: {
+    color: #F96B4C;
+    image: linear-gradient($gradient);
+  }
+
+  display: block;
+  clear: both;
+  margin: auto;
+  border-radius: 100%;
+  top: calc(500% + 66px);
+  box-shadow: 0 2px 0 #D42D78,
+              0 3px 10px rgba(#F33180, 0.15),
+              0 0px 10px rgba(#F33180, 0.15),
+              0 0px 4px rgba(darken(#F33180, 80%), 0.35),
+              0 5px 20px rgba(#F33180, 0.25),
+              0 15px 40px rgba(#F33180, 0.75),
+              inset 0 0 15px rgba(#FFFFFF, 0.05);
+
+  overflow: hidden;
+
+
+  &:after {
+    content:'';
+    font-style: normal;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: {
+      image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/64/icon-add-f.svg");
+      repeat: no-repeat;
+      size: 30%;
+      position: center center;
+    }
+
+    left: 0;
+    top: 0;
+  }
+}
+*/
+
+.mdl-menu .mdl-menu__item {
+  display: flex;
+  align-items: center;
 }
 
-a:visited, a:link {
-  color: #607D8B;
+.mdl-navigation__link {
+  display: flex !important;
+  flex-direction: row;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.56);
+  font-weight: 500;
 }
 
-a:hover {
-  color: #039be5;
-  background-color: #CFD8DC;
+.mdl-layout__header,
+.mdl-layout__drawer {
+  border: none;
 }
 
-a.router-link-active {
-  color: #039be5;
+.mdl-layout__drawer {
+  background-color: #2d333c;
 }
 
-h1 {
-  font-size: 1.2em;
-  color: #999;
-  margin-bottom: 0;
+.mdl-layout__content {
+  background-color: linear-gradient(45deg, #343d47, #404852);
 }
 
-h2 {
-  font-size: 2em;
-  margin-top: 0;
-  padding-top: 0;
+.mdl-layout__header {
+  background-color: transparent;
+  box-shadow: none;
+  margin-bottom: 16px;
 }
