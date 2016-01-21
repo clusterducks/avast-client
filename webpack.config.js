@@ -127,7 +127,7 @@ module.exports = {
         host: metadata.host,
         port: metadata.port,
         proxy: {
-            '/api': {
+            '/api/*': {
                 target: 'http://localhost:8080',
                 secure: false
             },

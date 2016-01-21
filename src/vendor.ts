@@ -27,3 +27,6 @@ import 'angular2/http';
 
 // rxjs
 import 'rxjs';
+
+// d3
+import * as d3 from 'd3';

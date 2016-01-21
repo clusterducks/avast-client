@@ -6,21 +6,18 @@ import {NodesComponent} from './nodes/nodes.component';
 import {NodeDetailComponent} from './nodes/node-detail.component';
 import {ContainersComponent} from './containers/containers.component';
 import {ImagesComponent} from './images/images.component';
+import {HeaderComponent} from './header/header.component';
+import {SidebarComponent} from './sidebar/sidebar.component';
 
 @Component({
   selector: 'avast',
-  template: `
-    <h1>{{title}}</h1>
-    <a [routerLink]="['Dashboard']">Dashboard</a>
-    <a [routerLink]="['Nodes']">Nodes</a>
-    <a [routerLink]="['Containers']">Containers</a>
-    <a [routerLink]="['Images']">Images</a>
-    <router-outlet></router-outlet>
-  `,
-  styles: [
-    require('./app.component.css')
-  ],
-  directives: [ROUTER_DIRECTIVES]
+  template: require('./app.component.html'),
+  styles: [require('./app.component.css')],
+  directives: [
+    ROUTER_DIRECTIVES,
+    HeaderComponent,
+    SidebarComponent
+  ]
 })
 
 @RouteConfig([
@@ -52,5 +49,4 @@ import {ImagesComponent} from './images/images.component';
 ])
 
 export class AppComponent {
-  public title = 'Avast';
 }

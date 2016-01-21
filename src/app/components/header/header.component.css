@@ -1,0 +1,42 @@
+.mdl-layout__header-row {
+  padding-left: 32px;
+}
+
+.mdl-textfield {
+  padding: 0px;
+  margin-top: 41px;
+}
+
+.mdl-textfield .mdl-textfield__expandable-holder {
+  bottom: 19px;
+}
+
+.mdl-layout__header .mdl-layout__drawer-button {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.navigation {
+  direction: ltr;
+  justify-content: flex-end;
+  width: 800px;
+}
+
+.navigation .mdl-navigation__link {
+  display: inline-block;
+  height: 48px;
+  line-height: 50px;
+  background-color: transparent;
+  border-bottom: 3px solid transparent;
+  padding: 0;
+}
+
+.navigation .mdl-navigation__link:hover {
+  border-color: #9644ff;
+}
+
+.navigation .mdl-navigation__link a {
+  display: inline-block;
+  color: #fff;
+  text-decoration: none;
+  padding: 0 24px;
+}
