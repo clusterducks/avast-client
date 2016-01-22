@@ -12,7 +12,7 @@ export const REQUEST_NODES = 'REQUEST_NODES';
 export const RECEIVE_NODES = 'RECEIVE_NODES';
 export const REQUEST_NODE = 'REQUEST_NODE';
 export const RECEIVE_NODE = 'RECEIVE_NODE';
-export const UPDATE_NODE_HEALTH = 'UPDATE_NODE_HEALTH';
+export const RECEIVE_NODE_HEALTH = 'RECEIVE_NODE_HEALTH';
 
 @Injectable()
 export class ConsulActions extends Actions {
@@ -55,15 +55,21 @@ export class ConsulActions extends Actions {
   }
 
   requestDatacenters() {
-    return {type: REQUEST_DATACENTERS};
+    return {
+      type: REQUEST_DATACENTERS
+    };
   }
 
   requestNodes(dc: string) {
-    return {type: REQUEST_NODES};
+    return {
+      type: REQUEST_NODES
+    };
   }
 
   requestNode(name: string) {
-    return {type: REQUEST_NODE};
+    return {
+      type: REQUEST_NODE
+    };
   }
 
   receiveDatacenters(datacenters: string[]) {
@@ -89,9 +95,9 @@ export class ConsulActions extends Actions {
     };
   }
 
-  updateNodeHealth(check: SwarmHealthCheck) {
+  receiveNodeHealth(check: SwarmHealthCheck) {
     return {
-      type: UPDATE_NODE_HEALTH,
+      type: RECEIVE_NODE_HEALTH,
       check
     };
   }

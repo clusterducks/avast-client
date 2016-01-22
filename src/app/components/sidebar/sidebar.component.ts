@@ -18,16 +18,16 @@ export class SidebarComponent {
   public datacenters: string[] = [];
   public currentDatacenter: string = 'dc1';
   public nodes: SwarmNode[] = [];
+  private zone: NgZone;
   private isFetchingDatacenters: boolean = false;
   private isFetchingNodes: boolean = false;
-  private zone: NgZone;
   private unsubscribe: Function;
 
-  constructor (private _router: Router,
-               private _zone: NgZone,
-               private _appStore: AppStore,
-               private _consulActions: ConsulActions,
-               private _nodesService: NodesService) {
+  constructor(private _router: Router,
+              private _zone: NgZone,
+              private _appStore: AppStore,
+              private _consulActions: ConsulActions,
+              private _nodesService: NodesService) {
     this.zone = _zone;
   }
 

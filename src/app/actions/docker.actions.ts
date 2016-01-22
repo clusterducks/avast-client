@@ -42,11 +42,15 @@ export class DockerActions extends Actions {
   }
 
   requestContainers() {
-    return {type: REQUEST_CONTAINERS};
+    return {
+      type: REQUEST_CONTAINERS
+    };
   }
 
   requestImages() {
-    return {type: REQUEST_IMAGES};
+    return {
+      type: REQUEST_IMAGES
+    };
   }
 
   receiveContainers(containers: DockerContainer[]) {

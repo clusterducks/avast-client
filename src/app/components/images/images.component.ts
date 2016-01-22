@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy} from 'angular2/core';
+import {Component, NgZone, OnInit, OnDestroy} from 'angular2/core';
 import {Router} from 'angular2/router';
 import {AppStore} from 'angular2-redux';
 
@@ -18,12 +18,15 @@ import {ImageTree} from './directives/image-tree.directive';
 export class ImagesComponent implements OnInit {
   public rootImage: DockerImage;
   public selectedImage: DockerImage;
+  private zone: NgZone;
   private isFetchingImages: boolean = false;
   private unsubscribe: Function;
 
   constructor(private _router: Router,
+              private _zone: NgZone,
               private _appStore: AppStore,
               private _dockerActions: DockerActions) {
+    this.zone = _zone;
   }
 
   ngOnInit() {
