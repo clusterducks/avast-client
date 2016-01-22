@@ -4,7 +4,7 @@ import {Actions} from 'angular2-redux';
 import 'rxjs/add/operator/map';
 
 import {API_VERSION} from '../constants';
-import {SwarmNode} from '../components/nodes/interfaces/swarm-node';
+import {SwarmNode, SwarmHealthCheck} from '../components/nodes/interfaces/swarm-node';
 
 export const REQUEST_DATACENTERS = 'REQUEST_DATACENTERS';
 export const RECEIVE_DATACENTERS = 'RECEIVE_DATACENTERS';
@@ -12,6 +12,7 @@ export const REQUEST_NODES = 'REQUEST_NODES';
 export const RECEIVE_NODES = 'RECEIVE_NODES';
 export const REQUEST_NODE = 'REQUEST_NODE';
 export const RECEIVE_NODE = 'RECEIVE_NODE';
+export const UPDATE_NODE_HEALTH = 'UPDATE_NODE_HEALTH';
 
 @Injectable()
 export class ConsulActions extends Actions {
@@ -88,4 +89,10 @@ export class ConsulActions extends Actions {
     };
   }
 
+  updateNodeHealth(check: SwarmHealthCheck) {
+    return {
+      type: UPDATE_NODE_HEALTH,
+      check
+    };
+  }
 }

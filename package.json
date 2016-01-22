@@ -20,7 +20,7 @@
     "prebuild:prod": "npm run clean:dist",
     "build:prod": "./node_modules/.bin/webpack --config webpack.prod.config.js --progress --profile --colors --display-error-details --display-cached",
     "server": "npm run server:dev",
-    "server:dev": "./node_modules/.bin/webpack-dev-server --progress --profile --colors --display-error-details --display-cached",
+    "server:dev": "./node_modules/.bin/webpack-dev-server --progress --profile",
     "server:prod": "./node_modules/.bin/http-server dist --cors",
     "webdriver:update": "./node_modules/.bin/webdriver-manager update",
     "webdriver:start": "./node_modules/.bin/webdriver-manager start",
@@ -79,8 +79,8 @@
     "typescript": "^1.7.3",
     "typings": "^0.6.1",
     "url-loader": "^0.5.6",
-    "webpack": "^1.12.9",
-    "webpack-dev-server": "^1.14.1",
+    "webpack": "http://github.com/webpack/webpack/tarball/master",
+    "webpack-dev-server": "http://github.com/webpack/webpack-dev-server/tarball/master",
     "webpack-md5-hash": "0.0.4"
   },
   "repository": {

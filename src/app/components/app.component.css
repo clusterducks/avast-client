@@ -88,7 +88,7 @@ a {
 }
 
 .mdl-layout__content {
-  background-color: linear-gradient(45deg, #343d47, #404852);
+  background-image: linear-gradient(45deg, #343d47, #404852);
 }
 
 .mdl-layout__header {
