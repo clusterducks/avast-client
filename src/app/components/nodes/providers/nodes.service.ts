@@ -12,10 +12,20 @@ export class NodesService {
     var vm = this;
 
     socket.onmessage = function(e) {
-      //console.log('on message:', e);
       var d = JSON.parse(e.data);
-      if (d.from === 'consul' && d.type === 'nodes') {
-        vm._appStore.dispatch(vm._consulActions.receiveNodes(null, d.data));
+
+      switch (d.from) {
+        case 'consul':
+          switch (d.type) {
+            case 'nodes':
+              vm._appStore.dispatch(vm._consulActions.receiveNodes(null, d.data));
+              break;
+            case 'checks':
+              vm._appStore.dispatch(vm._consulActions.updateNodeHealth(d.data));
+              break;
+            case 'service':
+              break;
+          }
       }
     };
   }

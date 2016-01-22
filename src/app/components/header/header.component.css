@@ -2,8 +2,12 @@
   padding-left: 32px;
 }
 
+.mdl-layout-title {
+  color: #687785;
+}
+
 .mdl-textfield {
-  padding: 0px;
+  padding: 0;
   margin-top: 41px;
 }
 
@@ -18,25 +22,27 @@
 .navigation {
   direction: ltr;
   justify-content: flex-end;
-  width: 800px;
 }
 
 .navigation .mdl-navigation__link {
   display: inline-block;
   height: 48px;
-  line-height: 50px;
+  line-height: 46px;
   background-color: transparent;
-  border-bottom: 3px solid transparent;
   padding: 0;
-}
-
-.navigation .mdl-navigation__link:hover {
-  border-color: #9644ff;
 }
 
 .navigation .mdl-navigation__link a {
   display: inline-block;
-  color: #fff;
+  color: #687785;
   text-decoration: none;
   padding: 0 24px;
+  border-bottom: 3px solid transparent;
+  transition: all 0.25s ease-out;
+}
+
+.navigation .mdl-navigation__link a:hover,
+.navigation .mdl-navigation__link a.router-link-active {
+  color: #fff;
+  border-color: #9644ff;
 }
