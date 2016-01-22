@@ -67,6 +67,11 @@ export default (state: INodeState = <INodeState>{}, action: any = {}) => {
       });
     }
 
+    case ConsulActions.RECEIVE_LEADER:
+      return Object.assign({}, state, {
+        leader: action.leader
+      });
+
     default:
       return state;
   }

@@ -10,18 +10,18 @@
   <h2>Services</h2>
   <ul class="services">
     <li *ngFor="#s of node.services">
-      <h3>{{s.Service}}</h3>
+      <h3>{{s.service}}</h3>
       <div>
-        <label>id:</label> {{s.ID}}
+        <label>id:</label> {{s.id}}
       </div>
       <div>
-        <label>address:</label> {{s.Address}}
+        <label>address:</label> {{s.address}}
       </div>
       <div>
-        <label>port:</label> {{s.Port}}
+        <label>port:</label> {{s.port}}
       </div>
       <div>
-        <label>tags:</label> {{s.Tags}}
+        <label>tags:</label> {{s.tags}}
       </div>
     </li>
   </ul>
@@ -29,21 +29,21 @@
   <h2>Health Checks</h2>
   <ul class="checks">
     <li *ngFor="#c of node.checks">
-      <h3>{{c.Name}}</h3>
+      <h3>{{c.name}}</h3>
       <div>
-        <label>check id:</label> {{c.CheckID}}
+        <label>check id:</label> {{c.checkId}}
       </div>
       <div>
-        <label>service:</label> {{c.ServiceID}} {{c.ServiceName}}
+        <label>service:</label> {{c.serviceId}} {{c.serviceName}}
       </div>
       <div>
-        <label>status:</label> {{c.Status}}
+        <label>status:</label> {{c.status}}
       </div>
       <div>
-        <label>output:</label> <code>{{c.Output}}</code>
+        <label>output:</label> <code>{{c.output}}</code>
       </div>
       <div>
-        <label>notes:</label> {{c.Notes}}
+        <label>notes:</label> {{c.notes}}
       </div>
     </li>
   </ul>

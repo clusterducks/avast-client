@@ -31,8 +31,10 @@ export class ImagesComponent implements OnInit {
 
   ngOnInit() {
     this.unsubscribe = this._appStore.subscribe((state) => {
-      this.rootImage = state.docker.rootImage;
-      this.isFetchingImages = state.docker.isFetchingImages;
+      this.zone.run(() => {
+        this.rootImage = state.docker.rootImage;
+        this.isFetchingImages = state.docker.isFetchingImages;
+      });
     });
 
     this._appStore.dispatch(this._dockerActions.fetchImages());

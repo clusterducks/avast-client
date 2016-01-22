@@ -17,6 +17,13 @@ export class NodesService {
       switch (d.from) {
         case 'consul':
           switch (d.type) {
+            case 'key':
+              switch (d.data.key) {
+                case 'barney/docker/swarm/leader':
+                  vm._appStore.dispatch(vm._consulActions.receiveLeader(atob(d.data.value)));
+                  break;
+              }
+              break;
             case 'nodes':
               vm._appStore.dispatch(vm._consulActions.receiveNodes(null, d.data));
               break;
