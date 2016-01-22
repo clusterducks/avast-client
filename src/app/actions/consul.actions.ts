@@ -13,6 +13,7 @@ export const RECEIVE_NODES = 'RECEIVE_NODES';
 export const REQUEST_NODE = 'REQUEST_NODE';
 export const RECEIVE_NODE = 'RECEIVE_NODE';
 export const RECEIVE_NODE_HEALTH = 'RECEIVE_NODE_HEALTH';
+export const RECEIVE_LEADER = 'RECEIVE_LEADER';
 
 @Injectable()
 export class ConsulActions extends Actions {
@@ -99,6 +100,14 @@ export class ConsulActions extends Actions {
     return {
       type: RECEIVE_NODE_HEALTH,
       check
+    };
+  }
+
+  receiveLeader(leader: string) {
+    leader = leader.split(':')[0];
+    return {
+      type: RECEIVE_LEADER,
+      leader
     };
   }
 }

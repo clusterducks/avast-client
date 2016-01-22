@@ -4,7 +4,7 @@ import {AppStore} from 'angular2-redux';
 
 import {ConsulActions} from '../../actions/consul.actions';
 import {NodesService} from '../nodes/providers/nodes.service';
-import {SwarmNode} from '../nodes/interfaces/swarm-node';
+import {SwarmNode, SwarmHealthCheck} from '../nodes/interfaces/swarm-node';
 
 @Component({
   selector: 'avast-sidebar',
@@ -19,6 +19,8 @@ export class SidebarComponent {
   public currentDatacenter: string = 'dc1';
   public nodes: SwarmNode[] = [];
   private zone: NgZone;
+  private leader: string;
+  private nodeStatus: SwarmHealthCheck;
   private isFetchingDatacenters: boolean = false;
   private isFetchingNodes: boolean = false;
   private unsubscribe: Function;
@@ -36,6 +38,7 @@ export class SidebarComponent {
       this.zone.run(() => {
         this.datacenters = state.consul.datacenters;
         this.nodes = state.consul.nodes;
+        this.leader = state.consul.leader;
         this.isFetchingDatacenters = state.consul.isFetchingDatacenters;
         this.isFetchingNodes = state.consul.isFetchingNodes;
       });
@@ -57,18 +60,24 @@ export class SidebarComponent {
     if (!node || !node.checks) {
       return;
     }
-    let nodeStatus: string;
+    let nodeCheck: SwarmHealthCheck;
     node.checks.some(function(check) {
       if (check.checkId === 'serfHealth') {
-        nodeStatus = check.status;
+        console.log(check);
+        nodeCheck = check;
         return true;
       }
     });
-    return nodeStatus;
+    this.nodeStatus = nodeCheck;
+    return nodeCheck;
   }
 
   gotoNode(name: string) {
     this._router.navigate(['NodeDetail', { name: name }]);
+  }
+
+  isLeader(node: SwarmNode) {
+    return !!(node.address === this.leader);
   }
 
   private ngOnDestroy() {

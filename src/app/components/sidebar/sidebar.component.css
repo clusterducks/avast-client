@@ -43,7 +43,7 @@
 .mdl-navigation .mdl-navigation__link {
   position: relative;
   display: flex !important;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-start;
   color: #fff;
   font-weight: 500;
@@ -62,12 +62,16 @@
 
 .mdl-navigation .mdl-navigation__link small {
   color: #85909f;
-  font-weight: 400;
+}
+
+.mdl-navigation .mdl-navigation__link .material-icons {
+  color: #adff44;
+  font-size: 18px;
 }
 
 .mdl-navigation .mdl-navigation__link .led {
-  width: 16px;
-  height: 16px;
+  width: 12px;
+  height: 12px;
   position: absolute;
   top: 20px;
   right: 32px;
@@ -98,4 +102,7 @@
               0 5px 20px rgba(243, 49, 128, 0.25),
               0 15px 40px rgba(243, 49, 128, 0.75),
               inset 0 0 15px rgba(255, 255, 255, 0.05);
+}
+
+.mdl-navigation .mdl-tooltip {
 }
