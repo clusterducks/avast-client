@@ -40,7 +40,7 @@ export default (state: INodeState = <INodeState>{}, action: any = {}) => {
         isFetchingNode: false
       });
 
-    case ConsulActions.UPDATE_NODE_HEALTH: {
+    case ConsulActions.RECEIVE_NODE_HEALTH: {
       // @TODO: move this to nodes.service
       let nodes: SwarmNode[] = <SwarmNode[]>state.nodes;
       if (!nodes) {

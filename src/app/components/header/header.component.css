@@ -3,7 +3,20 @@
 }
 
 .mdl-layout-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   color: #687785;
+  text-decoration: none;
+  transition: color 0.25s ease-out;
+}
+
+.mdl-layout-title:hover {
+  color: #fff;
+}
+
+.mdl-layout-title .material-icons {
+  margin-right: 8px;
 }
 
 .mdl-textfield {
@@ -30,6 +43,15 @@
   line-height: 46px;
   background-color: transparent;
   padding: 0;
+  margin: 0 4px;
+}
+
+.navigation .mdl-navigation__link:first-child {
+  margin-left: 0;
+}
+
+.navigation .mdl-navigation__link:last-child {
+  margin-right: 0;
 }
 
 .navigation .mdl-navigation__link a {

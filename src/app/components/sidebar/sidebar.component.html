@@ -1,5 +1,6 @@
 <header class="drawer-header">
-  <div *ngIf="datacenters?.length" class="dc-dropdown">
+  <div *ngIf="isFetchingDatacenters" class="fetching">Loading datacenters...</div>
+  <div *ngIf="!isFetchingDatacenters && datacenters?.length" class="dc-dropdown">
     <span>{{currentDatacenter}}</span>
     <div class="mdl-layout-spacer"></div>
     <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
@@ -11,10 +12,11 @@
     </ul>
   </div>
 </header>
+
 <nav class="mdl-navigation">
   <h1>Nodes</h1>
   <div *ngIf="isFetchingNodes" class="fetching">Loading nodes...</div>
-  <div *ngIf="nodes?.length">
+  <div *ngIf="!isFetchingNodes && nodes?.length">
     <div *ngFor="#dcn of nodes" class="mdl-navigation__link" (click)="gotoNode(dcn.name)">
       <div class="module">
         <span class="led led-{{getNodeStatus(dcn)}}"></span>
