@@ -85,6 +85,7 @@ a {
 
 .mdl-layout__drawer {
   background-color: #2d333c;
+  overflow: visible;
 }
 
 .mdl-layout__content {
