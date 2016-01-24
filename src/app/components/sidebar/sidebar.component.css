@@ -50,8 +50,9 @@
   line-height: 20px;
   padding: 16px 32px;
   border: 2px solid transparent;
-  cursor: pointer;
+  opacity: 1;
   transition: all 0.25s ease-out;
+  cursor: pointer;
 }
 
 .mdl-navigation .mdl-navigation__link:hover {
@@ -106,4 +107,6 @@
 }
 
 .mdl-navigation .mdl-tooltip {
+  width: 160px;
+  line-height: 18px;
 }
