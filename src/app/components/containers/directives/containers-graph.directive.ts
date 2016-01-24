@@ -42,7 +42,7 @@ export class ContainersGraph implements OnInit {
 
     var line = d3.svg.line.radial<Result>()
       .interpolate('bundle')
-      .tension(0.85)
+      .tension(0.5)
       .radius((d) => d.y)
       .angle((d) => d.x / 180 * Math.PI);
 
