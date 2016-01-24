@@ -1,3 +1,5 @@
+import * as d3 from 'd3';
+
 export interface DockerContainer {
   Id:               string;
   Names:            string[];
@@ -10,4 +12,14 @@ export interface DockerContainer {
   Status:           string;
   HostConfig:       any;   // make interface?
   NetworkSettings:  any;   // make interface?
+}
+
+export interface Result extends d3.layout.cluster.Result {
+  key:    string;
+  parent: Result;
+  type:   string;
+  images: Result[];
+  //size: number;
+  //source: Result;
+  //target: Result;
 }

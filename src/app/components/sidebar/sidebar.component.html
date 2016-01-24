@@ -21,7 +21,7 @@
       <div class="module">
         <span id="led-{{i}}" class="led led-{{getNodeStatus(dcn)?.status}}"></span>
         <div>{{dcn.name}}</div>
-        <i *ngIf="isLeader(dcn)" class="material-icons" role="presentation">stop</i>
+        <i *ngIf="isLeader(dcn)" class="material-icons" role="presentation">done</i>
         <small>{{dcn.address}}</small>
         <div class="mdl-tooltip" [attr.for]="'led-' + i" (onmouseover)="getNodeStatus(dcn)">
           <div>{{nodeStatus?.name}}</div>
