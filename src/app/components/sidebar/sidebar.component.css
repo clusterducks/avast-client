@@ -46,7 +46,7 @@
   flex-direction: row;
   align-items: flex-start;
   color: #fff;
-  font-weight: 500;
+  font: 500 13px "Roboto Mono", monospace;
   line-height: 20px;
   padding: 16px 32px;
   border: 2px solid transparent;
@@ -55,13 +55,14 @@
 }
 
 .mdl-navigation .mdl-navigation__link:hover {
+  /*background-color: #252931;*/
   background-color: transparent;
-  /*background-color: #343d47;*/
   color: #9644ff;
 }
 
 .mdl-navigation .mdl-navigation__link small {
   color: #85909f;
+  font-size: 11px;
 }
 
 .mdl-navigation .mdl-navigation__link .material-icons {

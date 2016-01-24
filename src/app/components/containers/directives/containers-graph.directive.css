@@ -1,0 +1,55 @@
+#containerGraph {
+  width: 100%;
+}
+
+.node {
+  font: 300 10px "Roboto Mono", monospace;
+  fill: #85909f;
+  cursor: pointer;
+}
+
+.node:hover {
+  fill: #fff;
+}
+
+.link {
+  stroke: url(#linear);
+  stroke: #71747c;
+  stroke-width: 0.5px;
+  stroke-opacity: 0.5;
+  fill: none;
+  pointer-events: none;
+}
+
+.node,
+.link {
+  transition: all 0.5s ease-out;
+}
+
+.node:hover,
+.node--source,
+.node--target {
+  font-weight: 700;
+}
+
+.node--source {
+  fill: #2ef2dc;
+}
+
+.node--target {
+  fill: #2bd9f8;
+}
+
+.link--source,
+.link--target {
+  stroke-opacity: 1;
+  stroke-width: 2.5px;
+}
+
+.link--source {
+  stroke: #2bd9f8;
+}
+
+.link--target {
+  stroke: #2ef2dc;
+}

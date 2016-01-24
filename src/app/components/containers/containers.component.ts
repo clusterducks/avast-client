@@ -4,13 +4,15 @@ import {AppStore} from 'angular2-redux';
 
 import {DockerActions} from '../../actions/docker.actions';
 import {DockerContainer} from './interfaces/docker-container';
+import {ContainersGraph} from './directives/containers-graph.directive';
 
 @Component({
   selector: 'avast-containers',
   template: require('./containers.component.html'),
   styles: [
     require('./containers.component.css')
-  ]
+  ],
+  directives: [ContainersGraph]
 })
 
 export class ContainersComponent implements OnInit {

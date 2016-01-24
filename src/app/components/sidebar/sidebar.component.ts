@@ -63,7 +63,6 @@ export class SidebarComponent {
     let nodeCheck: SwarmHealthCheck;
     node.checks.some(function(check) {
       if (check.checkId === 'serfHealth') {
-        console.log(check);
         nodeCheck = check;
         return true;
       }
