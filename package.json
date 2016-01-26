@@ -80,9 +80,11 @@
     "typescript": "^1.7.3",
     "typings": "^0.6.1",
     "url-loader": "^0.5.6",
-    "webpack": "^2.0.5-beta",
-    "webpack-dev-server": "^2.0.0-beta",
+    "webpack-dev-server": "~2.0.0-beta",
     "webpack-md5-hash": "0.0.4"
+  },
+  "peerDependencies": {
+    "webpack": ">=2.0.4-beta"
   },
   "repository": {
     "type": "git",
