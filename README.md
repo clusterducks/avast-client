@@ -58,7 +58,7 @@ Running e2e tests
 npm run e2e
 ```
 
-### Building
+### Building locally
 
 ```
 # development
@@ -66,6 +66,13 @@ npm run build:dev
 
 # production
 npm run build:prod
+```
+
+### Building
+
+```
+docker build -t avast-client .
+docker tag avast-client clusterducks/avast-client
 ```
 
 ### Generating Documentation
