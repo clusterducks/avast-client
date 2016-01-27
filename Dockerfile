@@ -1,7 +1,7 @@
 FROM node:onbuild
  
 RUN npm run build:prod
+
+VOLUME ["/usr/src/app/dist"]
  
-EXPOSE 8080
- 
-CMD ["npm", "run", "server:prod"]
+CMD ["npm", "run", "build:prod"]
