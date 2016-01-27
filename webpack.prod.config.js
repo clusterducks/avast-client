@@ -3,13 +3,13 @@ var path = require('path');
 var webpack = require('webpack');
 var ProvidePlugin = require('webpack/lib/ProvidePlugin');
 var DefinePlugin = require('webpack/lib/DefinePlugin');
-var OccurenceOrderPlugin = require('webpack/lib/optimize/OccurenceOrderPlugin');
+var OccurrenceOrderPlugin = require('webpack/lib/optimize/OccurrenceOrderPlugin');
 var DedupePlugin = require('webpack/lib/optimize/DedupePlugin');
 var UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 var CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var WebpackMd5Hash        = require('webpack-md5-hash');
+var WebpackMd5Hash = require('webpack-md5-hash');
 var ENV = process.env.NODE_ENV = process.env.ENV = 'production';
 var HOST = process.env.HOST || 'localhost';
 var PORT = process.env.PORT || 8080;
@@ -104,7 +104,7 @@ module.exports = {
     plugins: [
         new WebpackMd5Hash(),
         new DedupePlugin(),
-        new OccurenceOrderPlugin(true),
+        new OccurrenceOrderPlugin(true),
         new CommonsChunkPlugin({
             name: 'vendor',
             filename: 'vendor.[chunkhash].bundle.js',
@@ -153,8 +153,6 @@ module.exports = {
         emitErrors: true,
         failOnHint: true
     },
-
-    // don't use devServer for production
 
     // we need this due to problems with es6-shim
     node: {

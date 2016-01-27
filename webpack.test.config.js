@@ -1,7 +1,7 @@
 var path = require('path');
 // webpack plugins
 var ProvidePlugin = require('webpack/lib/ProvidePlugin');
-var DefinePlugin    = require('webpack/lib/DefinePlugin');
+var DefinePlugin = require('webpack/lib/DefinePlugin');
 var ENV = process.env.ENV = process.env.NODE_ENV = 'test';
 
 module.exports = {
