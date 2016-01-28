@@ -1,6 +1,7 @@
 var ReconnectingWebSocket = require('ReconnectingWebSocket');
 export const socket = new ReconnectingWebSocket(
-  `${window.location.origin.replace('http', 'ws')}/ws`
+  'ws://localhost:8080/ws'
+  //`${window.location.origin.replace('http', 'ws')}/ws`
 );
 
 socket.onopen = function() {

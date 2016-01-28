@@ -1,7 +1,6 @@
 import {Component} from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 
-import {DashboardComponent} from './dashboard/dashboard.component';
 import {NodesComponent} from './nodes/nodes.component';
 import {NodeDetailComponent} from './nodes/node-detail.component';
 import {ContainersComponent} from './containers/containers.component';
@@ -23,12 +22,7 @@ import {SidebarComponent} from './sidebar/sidebar.component';
 @RouteConfig([
   {
     path: '/',
-    redirectTo: ['Dashboard']
-  }, {
-    path: '/dashboard',
-    name: 'Dashboard',
-    component: DashboardComponent,
-    useAsDefault: true
+    redirectTo: ['Nodes']
   }, {
     path: '/nodes',
     name: 'Nodes',

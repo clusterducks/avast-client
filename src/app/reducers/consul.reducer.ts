@@ -41,29 +41,29 @@ export default (state: INodeState = <INodeState>{}, action: any = {}) => {
       });
 
     case ConsulActions.RECEIVE_NODE_HEALTH: {
-      // @TODO: move this to nodes.service
-      let nodes: SwarmNode[] = <SwarmNode[]>state.nodes;
-      if (!nodes) {
+      if (!state.nodes) {
         return state;
       }
 
-      nodes.some(function(node) {
-        if (node.name === action.check.node) {
-          if (!node.checks) {
-            node.checks = [action.check];
-            return true;
-          }
-          node.checks.some(function(check) {
-            if (check.checkId === action.check.checkId) {
-              Object.assign(check, check, action.check);
-              return true;
-            }
-          });
-        }
-      });
+      let i: number = (state.nodes || [])
+        .map((node) => node.name)
+        .indexOf(action.check.node);
+      let c = (state.nodes[i].checks || [])
+        .map((chk) => chk.checkId)
+        .indexOf(action.check.checkId);
 
       return Object.assign({}, state, {
-        nodes: nodes
+        nodes: [
+          ...state.nodes.slice(0, i),
+          Object.assign({}, state.nodes[i], {
+            checks: [
+              ...(state.nodes[i].checks || []).slice(0, c),
+              action.check,
+              ...(state.nodes[i].checks || []).slice(c + 1)
+            ]
+          }),
+          ...state.nodes.slice(i + 1)
+        ]
       });
     }
 
