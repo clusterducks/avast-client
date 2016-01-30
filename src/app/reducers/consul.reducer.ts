@@ -1,5 +1,12 @@
+import {List} from 'immutable';
+
 import * as ConsulActions from '../actions/consul.actions';
 import {SwarmNode, SwarmHealthCheck, INodeState} from '../components/nodes/interfaces/swarm-node';
+
+export const initialConsulState = {
+  datacenters: List([]),
+  nodes: List([]),
+};
 
 export default (state: INodeState = <INodeState>{}, action: any = {}) => {
   switch (action.type) {

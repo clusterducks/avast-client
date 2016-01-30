@@ -1,6 +1,5 @@
 import {Injectable} from 'angular2/core';
 import {Http, Response} from 'angular2/http';
-import {Actions} from 'angular2-redux';
 import 'rxjs/add/operator/map';
 
 import {API_VERSION} from '../constants';
@@ -16,10 +15,9 @@ export const RECEIVE_NODE_HEALTH = 'RECEIVE_NODE_HEALTH';
 export const RECEIVE_LEADER = 'RECEIVE_LEADER';
 
 @Injectable()
-export class ConsulActions extends Actions {
+export class ConsulActions {
 
   constructor(private _http: Http) {
-    super();
   }
 
   fetchDatacenters() {

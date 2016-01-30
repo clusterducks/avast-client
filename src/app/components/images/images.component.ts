@@ -1,6 +1,6 @@
 import {Component, NgZone, OnInit, OnDestroy} from 'angular2/core';
 import {Router} from 'angular2/router';
-import {AppStore} from 'angular2-redux';
+import {AppStore} from '../../store/index.store';
 
 import {DockerActions} from '../../actions/docker.actions';
 import {DockerImage} from './interfaces/docker-image';
@@ -30,7 +30,8 @@ export class ImagesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.unsubscribe = this._appStore.subscribe((state) => {
+    //this.unsubscribe =
+    this._appStore.subscribe((state) => {
       this.zone.run(() => {
         this.rootImage = state.docker.rootImage;
         this.isFetchingImages = state.docker.isFetchingImages;
@@ -45,6 +46,6 @@ export class ImagesComponent implements OnInit {
   }
 
   private ngOnDestroy() {
-    this.unsubscribe();
+    //this.unsubscribe();
   }
 }

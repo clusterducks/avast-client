@@ -1,6 +1,6 @@
 import {Component, OnInit, OnDestroy} from 'angular2/core';
 import {RouteParams} from 'angular2/router';
-import {AppStore} from 'angular2-redux';
+import {AppStore} from '../../store/index.store';
 
 import {ConsulActions} from '../../actions/consul.actions';
 import {SwarmNode} from './interfaces/swarm-node';
@@ -27,7 +27,8 @@ export class NodeDetailComponent implements OnInit {
     if (!this.node) {
       let name = this._routeParams.get('name');
 
-      this.unsubscribe = this._appStore.subscribe((state) => {
+      //this.unsubscribe =
+      this._appStore.subscribe((state) => {
         this.node = state.consul.node;
         this.isFetchingNode = state.consul.isFetchingNode;
       });
@@ -41,6 +42,6 @@ export class NodeDetailComponent implements OnInit {
   }
 
   private ngOnDestroy() {
-    this.unsubscribe();
+    //this.unsubscribe();
   }
 }

@@ -1,6 +1,6 @@
 import {Component, NgZone, OnInit, OnDestroy} from 'angular2/core';
 import {Router} from 'angular2/router';
-import {AppStore} from 'angular2-redux';
+import {AppStore} from '../../store/index.store';
 
 import {ConsulActions} from '../../actions/consul.actions';
 import {NodesService} from '../nodes/providers/nodes.service';
@@ -34,7 +34,8 @@ export class SidebarComponent {
   }
 
   ngOnInit() {
-    this.unsubscribe = this._appStore.subscribe((state) => {
+    //this.unsubscribe =
+    this._appStore.subscribe((state) => {
       this.zone.run(() => {
         this.datacenters = state.consul.datacenters;
         this.nodes = state.consul.nodes;
@@ -53,7 +54,7 @@ export class SidebarComponent {
   // 2.) work when someone picks a different dc
   selectDatacenter(dc: string) {
     this.currentDatacenter = dc;
-    this._appStore.dispatch(this._consulActions.fetchNodes(this.currentDatacenter));
+    //this._appStore.dispatch(this._consulActions.fetchNodes(this.currentDatacenter));
   }
 
   getNodeStatus(node?: SwarmNode) {
@@ -80,6 +81,6 @@ export class SidebarComponent {
   }
 
   private ngOnDestroy() {
-    this.unsubscribe();
+    //this.unsubscribe();
   }
 }

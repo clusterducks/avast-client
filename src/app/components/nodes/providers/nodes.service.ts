@@ -1,5 +1,5 @@
 import {Injectable} from 'angular2/core';
-import {AppStore} from 'angular2-redux';
+import {AppStore} from '../../../store/index.store';
 
 import {socket} from '../../../socket';
 import {ConsulActions} from '../../../actions/consul.actions';

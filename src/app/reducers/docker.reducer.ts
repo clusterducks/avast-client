@@ -1,4 +1,11 @@
+import {List} from 'immutable';
+
 import * as DockerActions from '../actions/docker.actions';
+
+export const initialDockerState = {
+  containers: List([]),
+  images: List([]),
+};
 
 export default (state = [], action: any = {}) => {
   switch (action.type) {

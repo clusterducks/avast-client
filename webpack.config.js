@@ -1,3 +1,6 @@
+//https://github.com/shanewilson/react-webpack-example
+// ^-- webpack.base.config.js
+
 var path = require('path');
 // webpack plugins
 var ProvidePlugin = require('webpack/lib/ProvidePlugin');

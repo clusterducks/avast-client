@@ -1,6 +1,5 @@
 import {Injectable} from 'angular2/core';
 import {Http, Response} from 'angular2/http';
-import {Actions} from 'angular2-redux';
 import 'rxjs/add/operator/map';
 
 import {API_VERSION} from '../constants';
@@ -13,17 +12,16 @@ export const REQUEST_IMAGES = 'REQUEST_IMAGES';
 export const RECEIVE_IMAGES = 'RECEIVE_IMAGES';
 
 @Injectable()
-export class DockerActions extends Actions {
+export class DockerActions {
 
   constructor(private _http: Http) {
-    super();
   }
 
   fetchContainers() {
     return (dispatch) => {
       dispatch(this.requestContainers());
 
-      this._http.get(`/api/${API_VERSION}/docker/containers`)
+      this._http.get(`http://localhost:8080/api/${API_VERSION}/docker/containers`)
         .map((res: Response) => res.json())
         .map(res => dispatch(this.receiveContainers(res)))
         .subscribe();
@@ -34,7 +32,7 @@ export class DockerActions extends Actions {
     return (dispatch) => {
       dispatch(this.requestImages());
 
-      this._http.get(`/api/${API_VERSION}/docker/images`)
+      this._http.get(`http://localhost:8080/api/${API_VERSION}/docker/images`)
         .map((res: Response) => res.json())
         .map(res => dispatch(this.receiveImages(res)))
         .subscribe();

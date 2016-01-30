@@ -1,6 +1,6 @@
 import {Component, NgZone, OnInit, OnDestroy} from 'angular2/core';
 import {Router} from 'angular2/router';
-import {AppStore} from 'angular2-redux';
+import {AppStore} from '../../store/index.store';
 
 import {ConsulActions} from '../../actions/consul.actions';
 import {NodeDetailComponent} from './node-detail.component';
@@ -32,7 +32,8 @@ export class NodesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.unsubscribe = this._appStore.subscribe((state) => {
+    //this.unsubscribe =
+    this._appStore.subscribe((state) => {
       this.zone.run(() => {
         this.nodes = state.consul.nodes;
         this.isFetchingNodes = state.consul.isFetchingNodes;
@@ -53,6 +54,6 @@ export class NodesComponent implements OnInit {
   }
 
   private ngOnDestroy() {
-    this.unsubscribe();
+    //this.unsubscribe();
   }
 }

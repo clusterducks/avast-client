@@ -10,7 +10,16 @@
     "sourceMap": true
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "typings/main.d.ts",
+    "typings/main"
+  ],
+  "filesGlob": [
+    "./src/**/*.ts",
+    "./test/**/*.ts",
+    "./node_modules/immutable/dist/immutable.d.ts",
+    "./node_modules/angular2-redux-store/lib/index.d.ts",
+    "typings/browser.d.ts"
   ],
   "compileOnSave": false,
   "buildOnSave": false,
