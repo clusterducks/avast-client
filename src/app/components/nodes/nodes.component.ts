@@ -20,7 +20,6 @@ import {SwarmNode} from './interfaces/swarm-node';
 export class NodesComponent implements OnInit {
   public nodes: SwarmNode[];
   public selectedNode: SwarmNode;
-  private zone: NgZone;
   private isFetchingNodes: boolean = false;
   private unsubscribe: Function;
 
@@ -28,15 +27,14 @@ export class NodesComponent implements OnInit {
               private _zone: NgZone,
               private _appStore: AppStore,
               private _consulActions: ConsulActions) {
-    this.zone = _zone;
   }
 
   ngOnInit() {
     //this.unsubscribe =
     this._appStore.subscribe((state) => {
-      this.zone.run(() => {
-        this.nodes = state.consul.nodes;
-        this.isFetchingNodes = state.consul.isFetchingNodes;
+      this._zone.run(() => {
+        this.nodes = state.consulNodes;
+        this.isFetchingNodes = state.uiState.isFetchingNodes;
       });
     });
 

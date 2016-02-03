@@ -1,6 +1,6 @@
 <header class="drawer-header">
   <div *ngIf="isFetchingDatacenters" class="fetching">Loading datacenters...</div>
-  <div *ngIf="!isFetchingDatacenters && datacenters?.length" class="dc-dropdown">
+  <div *ngIf="!isFetchingDatacenters && datacenters?.size" class="dc-dropdown">
     <span>{{currentDatacenter}}</span>
     <div class="mdl-layout-spacer"></div>
     <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
@@ -14,25 +14,7 @@
 </header>
 
 <nav class="mdl-navigation">
-  <h1>Nodes</h1>
-  <div *ngIf="isFetchingNodes" class="fetching">Loading nodes...</div>
-  <div *ngIf="!isFetchingNodes && nodes?.length">
-    <div *ngFor="#dcn of nodes; #i=index" class="mdl-navigation__link" (click)="gotoNode(dcn.name)">
-      <div class="module">
-        <span id="led-{{i}}" class="led led-{{getNodeStatus(dcn)?.status}}"></span>
-        <div>{{dcn.name}}</div>
-        <i *ngIf="isLeader(dcn)" class="material-icons" role="presentation">done</i>
-        <small>{{dcn.address}}</small>
-        <div class="mdl-tooltip" [attr.for]="'led-' + i" (onmouseover)="getNodeStatus(dcn)">
-          <div>{{nodeStatus?.name}}</div>
-          <div>{{nodeStatus?.status}}</div>
-          <div>
-            <code>{{nodeStatus?.output}}</code>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <sidebar-nodes [nodes]="_appStore.getState().consulNodes"></sidebar-nodes>
   <div class="mdl-layout-spacer"></div>
   <a class="mdl-navigation__link" href="">
     <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i>

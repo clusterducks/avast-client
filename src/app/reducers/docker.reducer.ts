@@ -1,3 +1,4 @@
+///<reference path="../../../node_modules/immutable/dist/immutable.d.ts"/>
 import {List} from 'immutable';
 
 import * as DockerActions from '../actions/docker.actions';
@@ -7,6 +8,7 @@ export const initialDockerState = {
   images: List([]),
 };
 
+// @TODO: type DockerState with containers[List], images[List], etc.
 export default (state = [], action: any = {}) => {
   switch (action.type) {
     case DockerActions.REQUEST_CONTAINERS:

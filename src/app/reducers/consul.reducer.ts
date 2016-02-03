@@ -1,85 +1,81 @@
+///<reference path="../../../node_modules/immutable/dist/immutable.d.ts"/>
 import {List} from 'immutable';
 
 import * as ConsulActions from '../actions/consul.actions';
-import {SwarmNode, SwarmHealthCheck, INodeState} from '../components/nodes/interfaces/swarm-node';
+import {SwarmNode, SwarmHealthCheck} from '../components/nodes/interfaces/swarm-node';
 
 export const initialConsulState = {
   datacenters: List([]),
   nodes: List([]),
 };
 
-export default (state: INodeState = <INodeState>{}, action: any = {}) => {
+function consulDatacenters(state: List<string> = List([]), action: any) {
   switch (action.type) {
-    case ConsulActions.REQUEST_DATACENTERS:
-      return Object.assign({}, state, {
-        isFetchingDatacenters: true
-      });
-
     case ConsulActions.RECEIVE_DATACENTERS:
-      return Object.assign({}, state, {
-        datacenters: action.datacenters,
-        isFetchingDatacenters: false
-      });
-
-    case ConsulActions.REQUEST_NODES:
-      return Object.assign({}, state, {
-        dc: action.dc,
-        isFetchingNodes: true
-      });
-
-    case ConsulActions.RECEIVE_NODES:
-      return Object.assign({}, state, {
-        dc: action.dc,
-        nodes: action.nodes,
-        isFetchingNodes: false
-      });
-
-    case ConsulActions.REQUEST_NODE:
-      return Object.assign({}, state, {
-        name: action.name,
-        isFetchingNode: true
-      });
-
-    case ConsulActions.RECEIVE_NODE:
-      return Object.assign({}, state, {
-        name: action.dc,
-        node: action.node,
-        isFetchingNode: false
-      });
-
-    case ConsulActions.RECEIVE_NODE_HEALTH: {
-      if (!state.nodes) {
-        return state;
-      }
-
-      let i: number = (state.nodes || [])
-        .map((node) => node.name)
-        .indexOf(action.check.node);
-      let c = (state.nodes[i].checks || [])
-        .map((chk) => chk.checkId)
-        .indexOf(action.check.checkId);
-
-      return Object.assign({}, state, {
-        nodes: [
-          ...state.nodes.slice(0, i),
-          Object.assign({}, state.nodes[i], {
-            checks: [
-              ...(state.nodes[i].checks || []).slice(0, c),
-              action.check,
-              ...(state.nodes[i].checks || []).slice(c + 1)
-            ]
-          }),
-          ...state.nodes.slice(i + 1)
-        ]
-      });
-    }
-
-    case ConsulActions.RECEIVE_LEADER:
-      return Object.assign({}, state, {
-        leader: action.leader
-      });
+      return List(action.datacenters);
 
     default:
       return state;
   }
-};
+}
+
+function consulNodes(state: List<SwarmNode> = List([]), action: any) {
+  switch (action.type) {
+    case ConsulActions.RECEIVE_NODES:
+      return state.mergeDeep(action.nodes);
+
+    //case ConsulActions.RECEIVE_NODE:
+    //  return Object.assign({}, state, {
+    //    node: action.node,
+    //    isFetchingNode: false
+    //  });
+
+    case ConsulActions.RECEIVE_NODE_HEALTH:
+      return updateNodeHealth(state, action);
+
+    case ConsulActions.RECEIVE_LEADER:
+      return updateNodeLeader(state, action);
+
+    default:
+      return state;
+  }
+}
+
+function updateNodeHealth(state, action) {
+  let i = state.findIndex((node: SwarmNode) => node.name === action.check.node);
+  let node: SwarmNode = state.get(i);
+  if (!node) {
+    return state;
+  }
+  if (!node.checks) {
+    return state.set(i, Object.assign({}, node, {
+      checks: List([new SwarmHealthCheck(action.check)])
+    }));
+  }
+
+  let j = node.checks.findIndex((chk: SwarmHealthCheck) => chk.checkId === action.check.checkId);
+  return state.set(i, Object.assign({}, node, {
+    checks: node.checks.set(j, new SwarmHealthCheck(action.check))
+  }));
+}
+
+function updateNodeLeader(state, action) {
+  state.forEach((node: SwarmNode) => node.isLeader = false);
+  let i = state.findIndex((node: SwarmNode) => node.address === action.leader);
+  let node: SwarmNode = state.get(i);
+  if (!node) {
+    return state.push(new SwarmNode({
+      name: 'Loading...',
+      address: action.leader,
+      services: List([]),
+      checks: List([]),
+      isLeader: true
+    }));
+  }
+
+  return state.set(i, Object.assign({}, node, {
+    isLeader: true
+  }));
+}
+
+export {consulDatacenters, consulNodes};

@@ -1,6 +1,5 @@
 import {Injectable} from 'angular2/core';
 import {Http, Response} from 'angular2/http';
-import 'rxjs/add/operator/map';
 
 import {API_VERSION} from '../constants';
 import {SwarmNode, SwarmHealthCheck} from '../components/nodes/interfaces/swarm-node';
@@ -37,7 +36,7 @@ export class ConsulActions {
 
       this._http.get(`/api/${API_VERSION}/consul/nodes${dc ? '/' + dc : ''}`)
         .map((res: Response) => res.json())
-        .map(res => dispatch(this.receiveNodes(dc, res)))
+        .map(res => dispatch(this.receiveNodes(res)))
         .subscribe();
     };
   }
@@ -78,10 +77,9 @@ export class ConsulActions {
     };
   }
 
-  receiveNodes(dc: string, nodes: SwarmNode[]) {
+  receiveNodes(nodes: SwarmNode[]) {
     return {
       type: RECEIVE_NODES,
-      dc,
       nodes
     };
   }

@@ -17,7 +17,8 @@ const createStoreWithMiddleware = applyMiddleware(
 
 const store = createStoreWithMiddleware(
   rootReducer, {
-    consul: initialConsulState,
+    consulDatacenters: initialConsulState.datacenters,
+    consulNodes: initialConsulState.nodes,
     docker: initialDockerState,
     uiState: initialUiState
   }

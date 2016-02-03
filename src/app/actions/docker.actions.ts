@@ -1,6 +1,5 @@
 import {Injectable} from 'angular2/core';
 import {Http, Response} from 'angular2/http';
-import 'rxjs/add/operator/map';
 
 import {API_VERSION} from '../constants';
 import {DockerContainer} from '../components/containers/interfaces/docker-container';

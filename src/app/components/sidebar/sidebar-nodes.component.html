@@ -1,0 +1,19 @@
+<h1>Nodes</h1>
+<div *ngIf="isFetchingNodes" class="fetching">Loading nodes...</div>
+<div *ngIf="!isFetchingNodes && nodes?.size" class="nodes">
+  <div *ngFor="#node of nodes.toJS(); #i=index" class="mdl-navigation__link" (click)="gotoNode(node.name)">
+    <div class="module">
+      <span id="led-{{i}}" class="led led-{{getNodeStatus(node)?.status}}"></span>
+      <div>{{node.name}}</div>
+      <i *ngIf="node.isLeader" class="material-icons" role="presentation">done</i>
+      <small>{{node.address}}</small>
+      <div class="mdl-tooltip" [attr.for]="'led-' + i" (onmouseover)="getNodeStatus(node)">
+        <div>{{nodeStatus?.name}}</div>
+        <div>{{nodeStatus?.status}}</div>
+        <div>
+          <code>{{nodeStatus?.output}}</code>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

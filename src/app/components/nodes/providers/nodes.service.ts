@@ -25,7 +25,7 @@ export class NodesService {
               }
               break;
             case 'nodes':
-              vm._appStore.dispatch(vm._consulActions.receiveNodes(null, d.data));
+              //vm._appStore.dispatch(vm._consulActions.receiveNodes(null, d.data));
               break;
             case 'checks':
               vm._appStore.dispatch(vm._consulActions.receiveNodeHealth(d.data));
